@@ -1,4 +1,4 @@
-FROM quay.io/app-sre/boilerplate:image-v2.3.2 AS builder
+FROM quay.io/app-sre/boilerplate:image-v5.0.0 AS builder
 
 RUN mkdir -p /workdir
 WORKDIR /workdir
@@ -7,7 +7,7 @@ RUN go mod download
 COPY . .
 RUN make go-build
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.9-1161
 ENV USER_UID=1001 \
     USER_NAME=aws-efs-operator
 
